@@ -1099,7 +1099,7 @@ public class DeviceServicesActivity extends AppCompatActivity implements Service
 //        }
 
         try {
-            bluetoothBinding.unbind();
+            if(bluetoothBinding != null) bluetoothBinding.unbind();
         } catch (Exception e) {
             Log.e("onDestroy", "bluetoothBinding Err" + e);
         }
@@ -3499,7 +3499,7 @@ public class DeviceServicesActivity extends AppCompatActivity implements Service
     public void onDisconnectClicked(final BluetoothDeviceInfo deviceInfo) {
         final String currenctDeviceAddr = bluetoothGatt.getDevice().getAddress();
 
-        bluetoothBinding = new BlueToothService.Binding(DeviceServicesActivity.this) {
+        bluetoothBinding = new BlueToothService.Binding(getApplicationContext()) {
             @Override
             protected void onBound(BlueToothService service) {
                 boolean success = service.disconnectGatt(deviceInfo.getAddress());
@@ -3531,7 +3531,7 @@ public class DeviceServicesActivity extends AppCompatActivity implements Service
 
     private void initDevice(final String deviceAddress) {
         handler = new Handler();
-        bluetoothBinding = new BlueToothService.Binding(this) {
+        bluetoothBinding = new BlueToothService.Binding(getApplicationContext()) {
             @Override
             protected void onBound(BlueToothService service) {//todo dubel
                 serviceHasBeenSet = true;

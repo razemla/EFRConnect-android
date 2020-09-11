@@ -363,7 +363,7 @@ public class BrowserActivity extends BaseActivity implements DebugModeCallback, 
         });
 
         // attempt connection for discovery
-        discovery.connect(this);
+        discovery.connect(getApplicationContext());
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -1361,7 +1361,7 @@ public class BrowserActivity extends BaseActivity implements DebugModeCallback, 
 
         showConnectingAnimation();
 
-        bluetoothBinding = new BlueToothService.Binding(this) {
+        bluetoothBinding = new BlueToothService.Binding(getApplicationContext()) {
             @Override
             protected void onBound(final BlueToothService service) {
                 boundService = service;
