@@ -1099,7 +1099,7 @@ public class DeviceServicesActivity extends AppCompatActivity implements Service
 //        }
 
         try {
-            bluetoothBinding.unbind();
+            if (bluetoothBinding != null) bluetoothBinding.unbind();
         } catch (Exception e) {
             Log.e("onDestroy", "bluetoothBinding Err" + e);
         }

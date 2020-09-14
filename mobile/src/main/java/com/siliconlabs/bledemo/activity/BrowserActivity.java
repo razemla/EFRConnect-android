@@ -1439,7 +1439,13 @@ public class BrowserActivity extends BaseActivity implements DebugModeCallback, 
                 });
             }
         };
-        BlueToothService.bind(bluetoothBinding);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (bluetoothBinding != null) BlueToothService.bind(bluetoothBinding);
+            }
+        }, 500);
     }
 
     @Override
